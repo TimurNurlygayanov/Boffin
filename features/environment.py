@@ -15,23 +15,30 @@
 
 
 from datetime import datetime
-from steps.login_page import LoginPage
+from steps.demo_page import DemoPage
 from steps.boffin.dblogger import DBLogger
 from selenium import webdriver
 
 
 def before_all(context):
+    """
+        This function prepares environment for tests
+    """
+    
+    # enable screenshots for 'failed' tests
     context.screenshots = True
+    # enable logging to the local mangodb data base
     context.dblogger_host = 'localhost'
+
     context.driver = webdriver.Firefox()
-    context.page = LoginPage(context)
-    context.page.login()
+    context.page = DemoPage(context)
 
     context.logger.test_suite_start("WEB UI sanity tests")
 
 
-
 def after_all(context):
+    "Close browser after all scenarious."
+
     context.driver.close()
     context.logger.test_suite_finish()
 
@@ -48,4 +55,8 @@ def after_tag(context, tag):
 
 
 def before_scenario(context, scenario):
+    """
+        This function allows save information about
+        all scenarios, which will be executed.
+    """
     context.logger.test_case_start(scenario)
