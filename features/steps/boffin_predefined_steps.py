@@ -28,7 +28,7 @@ def check(browser, condition):
     assert condition
 
 
-@given('browser with new page "page_url"')
+@given('browser with new page "{page_url}"')
 def step(browser, page_url):
     browser.page.Open(page_url)
 
