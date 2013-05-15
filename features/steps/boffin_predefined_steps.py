@@ -30,12 +30,29 @@ def check(browser, condition):
 
 @given('browser with new page "{page_url}"')
 def step(browser, page_url):
+    try:
+        browser.driver.close()
+        browser.driver = webdriver.Firefox()
+        browser.driver.maximize_window()
+    except:
+        pass
+
     browser.page.Open(page_url)
 
 
 @when('I navigate to "{path}"')
 def step(browser, path):
     browser.page.Navigate(path)
+
+
+@when('I move cursor to "{element_name}"')
+def step(browser, element_name):
+    action = webdriver.common.action_chains.ActionChains(browser.driver)
+
+    element = page.Button(element_name)
+    action.move_to_element(element)
+
+    action.perform()
 
 
 @when('I click on button "{button_name}"')
@@ -58,6 +75,17 @@ def step(browser, value, list_name):
     browser.page.DropDownList(list_name).Set(value)
 
 
+@when('I remember text from "{element_name}"')
+def step(browser, element_name):
+    browser.text_for_check = browser.page.Label(element_name).Text()
+
+
+@then('text of "{element_name}" is equal to text from memory')
+def step(browser, link_text):
+    text = browser.page.Label(element_name).Text()
+    check(browser, text == browser.text_for_check)
+
+
 @then('page should contain link "{link_text}"')
 def step(browser, link_text):
     check(browser, browser.page.Link(link_text).isPresented())
@@ -78,12 +106,12 @@ def step(browser, button_name):
     check(browser, not browser.page.Button(button_name).isPresented())
 
 
-@then('page should contain table cell "{cell_name}" with text "{text}"')
+@then('text of {cell_name} is equal to "{text}"')
 def step(browser, cell_name, text):
     check(browser, browser.page.TableCell(link_text).isPresented())
     check(browser, text in browser.page.TableCell(link_text).Text())
 
 
-@then('page should not contain table cell "{cell_name}" with text "{text}"')
+@then('text of {cell_name} is not equal to "{text}"')
 def step(browser, cell_name, text):
     check(browser, not text in browser.page.TableCell(link_text).Text())

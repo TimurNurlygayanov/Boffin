@@ -1,0 +1,128 @@
+<objects>
+  <object>
+     <type>Label</type>
+     <name>PageHeader</name>
+     <parameter>//tr/td[@valign='top']/div/h1</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>USAContactHeader</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table/tbody/tr/td[2]/h3</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>USAContactInfo</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table/tbody/tr/td[2]/p</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>USAContactPhone</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table/tbody/tr/td[2]/p/span</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>MSKContactHeader</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr/td[2]/h3</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>MSKContactInfo</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr/td[2]/p</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>MSKContactPhone</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr/td[2]/p/span</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>SRTContactHeader</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td[2]/h3</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>SRTContactInfo</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td[2]/p</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>SRTContactPhone</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td[2]/p/span</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>SPBContactHeader</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr/td[5]/h3</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>SPBContactInfo</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr/td[5]/p</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>SPBContactPhone</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr/td[5]/p/span</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>KharkivContactHeader</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td[5]/h3</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>KharkivContactInfo</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td[5]/p</parameter>
+  </object>
+
+  <object>
+     <type>Label</type>
+     <name>KharkivContactPhone</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td[5]/p/span</parameter>
+  </object>
+
+  <object>
+     <type>Link</type>
+     <name>FirstPost</name>
+     <parameter>/html/body/div/table[2]/tbody/tr/td/div/div/div/div[2]/a</parameter>
+  </object>
+
+  <object>
+     <type>Link</type>
+     <name>FirstEvent</name>
+     <parameter>/html/body/div/div/div[2]/table/tbody/tr/td/div/div[3]/ul/li/a</parameter>
+  </object>
+
+  <object>
+     <type>Link</type>
+     <name>FirstEventInCalendar</name>
+     <parameter>//tr/td/div/a[@id='bcaption']</parameter>
+  </object>
+
+  <object>
+     <type>Link</type>
+     <name>FirstNews</name>
+     <parameter>//div/div[@id='news']/div/div[@id='newsurl']/a</parameter>
+  </object>
+
+  <object>
+     <type>Link</type>
+     <name>FirstNewsHeader</name>
+     <parameter>//*[@id="bcaption"]</parameter>
+  </object>
+
+</objects>

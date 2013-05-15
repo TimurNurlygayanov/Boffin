@@ -18,6 +18,7 @@ import logging
 import elements
 import objects_library
 import dblogger
+import intellect
 
 
 """
@@ -26,12 +27,6 @@ import dblogger
 logging.basicConfig()
 logger = logging.getLogger('selenium.webdriver.remote.remote_connection')
 logger.setLevel('ERROR')
-
-
-error_msg = """
-                Object with parameter: %s
-                does not found on page.
-            """
 
 
 class Page:
@@ -54,8 +49,11 @@ class Page:
         """
             This method allows to find element,
             based on descriptions in Object Library,
-            xpath, id, name or pertial link text.
+            xpath, id, name or partial link text.
             If parameter != None will be used name % parameter
+
+            Also, this method allows to find input fields
+            by text of labels near the field
         """
 
         lib_name = "objects/objects.xml"
@@ -64,10 +62,14 @@ class Page:
         lib = objects_library.ObjectsLibrary(lib_name)
 
         if lib.get_object(name):
-            name = lib.get_object(name)
+            name, frame = lib.get_object(name)
 
         if parameter:
             name = name % parameter
+
+        if frame:
+            frame_object = self._find_element(frame)
+            self.driver.switch_to_frame(frame_object)
 
         obj = None
         k = 0
@@ -96,8 +98,11 @@ class Page:
             except:
                 pass
 
-        self.context.logger.error(error_msg % name)
-        return None
+        if not obj:
+            boffin = intellect.ArtificialIntelligence(self.driver)
+            obj = boffin.find_element(name)
+
+        return obj
 
     def Open(self, url):
         self.driver.get(url)
@@ -132,9 +137,8 @@ class Page:
 
     def Navigate(self, path):
         """
-            This method allows to navigate by
-            webUI menu button and links to
-            the specific page
+            This method allows to navigate by webUI menu button and links
+            to the specific page
         """
         steps = path.split('>')
 

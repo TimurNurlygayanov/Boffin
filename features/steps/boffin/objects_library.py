@@ -39,8 +39,11 @@ class ObjectsLibrary:
         """
             Search objects in Objects Library.
         """
+        frame = None
 
-        for object in self.objects:
-            if object['name'] == name:
-                return object['parameter']
+        for obj in self.objects:
+            if obj['name'] == name:
+                if 'frame' in obj:
+                    frame = obj['frame']
+                return (obj['parameter'], frame)
         return None

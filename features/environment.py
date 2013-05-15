@@ -15,7 +15,7 @@
 
 
 from datetime import datetime
-from steps.demo_page import DemoPage
+from steps.mirantis_page import MirantisTestPage
 from steps.boffin.dblogger import DBLogger
 from selenium import webdriver
 
@@ -28,10 +28,11 @@ def before_all(context):
     # enable screenshots for 'failed' tests
     context.screenshots = True
     # enable logging to the local mangodb data base
-    context.dblogger_host = 'localhost'
+    #context.dblogger_host = 'localhost'
 
     context.driver = webdriver.Firefox()
-    context.page = DemoPage(context)
+    context.driver.maximize_window()
+    context.page = MirantisTestPage(context)
 
     context.logger.test_suite_start("WEB UI sanity tests")
 

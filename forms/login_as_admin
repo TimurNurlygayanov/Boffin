@@ -1,0 +1,6 @@
+[page]
+name = mirantis_login
+
+[fields]
+user_name = 
+password = 

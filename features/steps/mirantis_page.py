@@ -17,16 +17,10 @@
 import boffin.page as page
 
 
-class DemoPage(page.Page):
+class MirantisPage(page.Page):
     """
         This class it is a simple page object.
         Each page object must inherit from page.Page class.
     """
 
-    name = 'Demo'
-
-    def search(self, text):
-        page = self.page
-        text = 'Boffin framework'
-        page.EditBox('String For Search').Set(text)
-        page.Button('Search').Click()
+    name = 'Mirantis'

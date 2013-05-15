@@ -20,114 +20,119 @@ logging.basicConfig()
 LOG = logging.getLogger('elements')
 
 
-class TableCellClass:
-    table = None
+class Object:
+    obj = None
+    browser = None
 
-    def __init__(self, obj):
+    def __init__(self, obj, browser):
+        self.browser = browser
         if not obj:
-            LOG.error('TableCell does not found')
-        self.table = obj
+            LOG.error('Object does not found')
+        self.obj = obj
+
+    def isPresented(self):
+        if self.obj:
+            return True
+        return False
 
     def Text(self):
-        if self.table:
-            LOG.critical(self.table.text)
-            return self.table.text
+        if self.obj:
+            text = self.obj.get_text()
+            self.browser.page.switch_to_default_content()
+            return text
         else:
             return ''
 
-
-class ButtonClass:
-    button = None
-
-    def __init__(self, obj):
-        if not obj:
-            LOG.error('Button does not found')
-        self.button = obj
-
     def Click(self):
-        if self.button:
-            self.button.click()
-
-    def isPresented(self):
-        if self.button:
-            return True
-        return False
+        if self.obj:
+            self.obj.click()
+        self.browser.page.switch_to_default_content()
 
 
-class LinkClass:
-    link = None
+class TableCellClass(Object):
+    pass
 
-    def __init__(self, obj):
-        if not obj:
-            LOG.error('Link does not found')
-        self.link = obj
 
-    def Click(self):
-        if self.link:
-            self.link.click()
+class Label(Object):
+    pass
 
-    def isPresented(self):
-        if self.link:
-            return True
-        return False
+
+class ButtonClass(Object):
+    pass
+
+
+class LinkClass(Object):
 
     def Address(self):
-        if self.link:
-            return self.link.get_attribute('href')
+        if self.obj:
+            link = self.obj.get_attribute('href')
+            self.browser.page.switch_to_default_content()
+            return link
         else:
             return ''
 
 
-class EditBoxClass:
-
-    def __init__(self, obj):
-        if not obj:
-            LOG.error('EditBox does not found')
-        self.edit = obj
-
-    def isPresented(self):
-        if self.edit:
-            return True
-        return False
+class EditBoxClass(Object):
 
     def Set(self, value):
-        if self.edit:
+        if self.obj:
             try:
-                self.edit.clear()
-                self.edit.send_keys(value)
+                self.obj.clear()
+                self.obj.send_keys(value)
             except:
                 LOG.error('Can not set value for text box.')
-
-    def Text(self):
-        if self.edit:
-            return self.edit.get_text()
-        else:
-            return ''
+        self.browser.page.switch_to_default_content()
 
 
-class DropDownListClass:
-    select = None
-
-    def __init__(self, obj):
-        if not obj:
-            LOG.error('DropDownList does not found')
-        self.select = obj
-
-    def isPresented(self):
-        if self.select is not None:
-            return True
-        return False
+class DropDownListClass(Object):
 
     def Set(self, value):
-        if self.select:
+        if self.obj:
             try:
-                Select(self.select).select_by_visible_text(value)
+                Select(self.obj).select_by_visible_text(value)
             except:
                 message = "Can not select element %s from drop down list."
                 LOG.error(message % value)
+        self.browser.page.switch_to_default_content()
 
-    def Text(self):
-        if self.select:
-            return self.select.get_text()
-        else:
-            return ''
+
+class CheckBox(Object):
+
+    def isSelected(self):
+        if self.obj:
+            status = self.obj.is_selected()
+            self.browser.page.switch_to_default_content()
+            return status
+
+    def Select(self):
+        if self.obj:
+            if not self.obj.is_selected():
+                self.obj.click()
+        self.browser.page.switch_to_default_content()
+
+    def Clear(self):
+        if self.obj:
+            if self.obj.is_selected():
+                self.obj.click()
+        self.browser.page.switch_to_default_content()
+
+
+class RadioButton(Object):
+
+    def isSelected(self):
+        if self.obj:
+            status = self.obj.is_selected()
+            self.browser.page.switch_to_default_content()
+            return status
+
+    def Select(self):
+        if self.obj:
+            if not self.obj.is_selected():
+                self.obj.click()
+        self.browser.page.switch_to_default_content()
+
+    def Clear(self):
+        if self.obj:
+            if self.obj.is_selected():
+                self.obj.click()
+        self.browser.page.switch_to_default_content()
